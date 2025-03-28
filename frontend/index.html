@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>_sublog</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+    <link rel="icon" type="image/png" href="images/favicon-96x96.png" sizes="96x96">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <meta name="theme-color" content="#1a1a1a">
+    <meta name="description" content="Real-time log viewer and management interface">
+</head>
+
+<body>
+    <div class="app-container">
+        <header>
+            <div class="controls">
+                <div class="brand-filter-group">
+                    <h1>_sublog</h1>
+                    <input type="text" id="filter-text" placeholder="Filter by text..."
+                        aria-label="Filter logs by text">
+                    <select id="filter-level" aria-label="Filter logs by level">
+                        <option value="">All Levels</option>
+                        <option value="error">error</option>
+                        <option value="warn">warn</option>
+                        <option value="info">info</option>
+                        <option value="http">http</option>
+                        <option value="verbose">verbose</option>
+                        <option value="debug">debug</option>
+                        <option value="silly">silly</option>
+                    </select>
+                    <button id="clear-logs" class="grey-button" aria-label="Clear logs from display">Clear</button>
+                </div>
+                <div class="action-group">
+                    <button id="toggle-metadata" class="icon-button" title="Toggle metadata display"
+                        aria-label="Toggle metadata display">
+                        <img src="images/icons/BiChevronBarExpand.svg" alt="Toggle metadata" class="icon expand-icon">
+                        <img src="images/icons/BiChevronBarContract.svg" alt="Toggle metadata"
+                            class="icon contract-icon hidden">
+                    </button>
+                    <button id="pause-logs" class="icon-button" title="Pause log updates"
+                        aria-label="Pause log updates">
+                        <img src="images/icons/BiPause.svg" alt="Pause logs" class="icon pause-icon">
+                        <img src="images/icons/BiPlay.svg" alt="Resume logs" class="icon play-icon hidden">
+                    </button>
+                    <button id="toggle-theme" class="icon-button" aria-label="Toggle dark/light theme">
+                        <img src="images/icons/HeroiconsMoon.svg" alt="Dark theme" class="icon moon-icon">
+                        <img src="images/icons/HeroiconsSun.svg" alt="Light theme" class="icon sun-icon hidden">
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <main id="log-container" aria-label="Log entries">
+            <div id="empty-state" class="empty-state">
+                <div class="empty-icon" aria-hidden="true">📋</div>
+                <h2>No logs yet</h2>
+                <p>Start sending logs to this endpoint to see them appear here in real-time.</p>
+                <div class="code-example">
+                    <code>curl -X POST http://{window.location.host}/log \\
+-H "Content-Type: application/json" \\
+-d '{"level":"info","message":"Hello from _sublog","metadata":{"source":"curl"}}'</code>
+                    <button id="copy-curl" class="icon-button copy-button" title="Copy to clipboard"
+                        aria-label="Copy example code to clipboard">
+                        <img src="images/icons/BiChevronBarDown.svg" alt="" class="icon copy-icon">
+                    </button>
+                </div>
+            </div>
+        </main>
+
+        <footer class="app-footer">
+            <div class="stats">
+                <span>DB: <span id="total-logs">0</span> logs</span>
+                <span>UI: <span id="displayed-logs">0</span> logs</span>
+            </div>
+            <div class="connection-status">
+                <span id="status" role="status" aria-live="polite">Connecting...</span>
+            </div>
+            <div class="footer-actions">
+                <button id="reset-db" class="danger-button" aria-label="Reset database">Reset Database</button>
+            </div>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

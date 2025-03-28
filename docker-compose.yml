@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  sublog:
+    build: . # Build the image from the Dockerfile in the current directory
+    container_name: sublog_app
+    ports:
+      - "8080:8080" # Map host port 8080 to container port 8080
+    volumes:
+      - ./data:/data # Mount local directory for data persistence
+    environment:
+      # Optional: Override default environment variables if needed
+      - PORT=8080
+      - SQLITE_PATH=/data/sublog.db
+      # - GIN_MODE=release # If using Gin framework
+    restart: unless-stopped
+    # Add user:uid mapping to ensure proper permissions
+    user: "${UID:-1000}:${GID:-1000}"
