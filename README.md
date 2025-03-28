@@ -128,4 +128,4 @@ curl -X POST -H "Content-Type: application/json" \
 
 ## License
 
-Do what you want with it.
+[Apache 2.0](LICENSE)
