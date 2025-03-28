@@ -69,7 +69,7 @@ Setting up Sublog is incredibly easy:
 2. **Clone the Repository:**
 
     ```bash
-    git clone [https://github.com/your-username/sublog.git](https://www.google.com/search?q=https://github.com/your-username/sublog.git) # Replace with your repo URL
+    git clone git@github.com:subcode-labs/sublog.git
     cd sublog
     ```
 
