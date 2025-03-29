@@ -19,6 +19,30 @@ _sublog is a minimalist HTTP log receiver and web UI all in one super-lightweigh
         jontybrook/sublog:latest
     ```
 
+    or...
+
+    Create a `docker-compose.yml` file and add the following:
+
+    ```bash
+        services:
+            sublog:
+                image: jontybrook/sublog:latest
+                ports:
+                - "8080:8080" 
+                volumes:
+                - sublog_data:/data # For persistent SQLite storage
+                restart: unless-stopped
+
+        volumes:
+            sublog_data:
+    ```
+
+    Then run:
+
+    ```bash
+    docker compose up -d
+    ```
+
 2. Send logs via HTTP POST requests to the `/logs` endpoint.
 
     ```bash
