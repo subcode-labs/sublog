@@ -11,7 +11,12 @@ _sublog is a minimalist HTTP log receiver and web UI all in one super-lightweigh
 1. Run the container:
 
     ```bash
-    docker compose up -d
+    docker run -d \
+        --name sublog \
+        -p 8080:8080 \
+        -v sublog_data:/data \
+        --restart unless-stopped \
+        jontybrook/sublog:latest
     ```
 
 2. Send logs via HTTP POST requests to the `/logs` endpoint.
