@@ -176,7 +176,7 @@ document.addEventListener('DOMContentLoaded', () => {
         try {
             document.execCommand('copy');
             // Show success feedback
-            const copyIcon = copyButton.querySelector('.copy-icon');
+            const copyIcon = copyButton.querySelector('svg');
             
             // Create a success icon
             const successIcon = document.createElement('div');
@@ -574,12 +574,8 @@ document.addEventListener('DOMContentLoaded', () => {
             copyBtn.title = 'Copy metadata';
             copyBtn.setAttribute('aria-label', 'Copy metadata to clipboard');
             
-            const copyIcon = document.createElement('img');
-            copyIcon.src = 'images/icons/BiChevronBarDown.svg';
-            copyIcon.alt = '';
-            copyIcon.style.width = '16px';
-            copyIcon.style.height = '16px';
-            copyBtn.appendChild(copyIcon);
+            // Add SVG icon
+            copyBtn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"><!-- Icon from Material Symbols by Google - https://github.com/google/material-design-icons/blob/master/LICENSE --><path fill="currentColor" d="M9 18q-.825 0-1.412-.587T7 16V4q0-.825.588-1.412T9 2h9q.825 0 1.413.588T20 4v12q0 .825-.587 1.413T18 18zm0-2h9V4H9zm-4 6q-.825 0-1.412-.587T3 20V6h2v14h11v2zm4-6V4z"/></svg>`;
             
             metadataContent.appendChild(copyBtn);
             metadataRow.appendChild(metadataContent);
@@ -593,7 +589,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 try {
                     navigator.clipboard.writeText(formattedJson).then(() => {
                         // Show success feedback
-                        copyIcon.style.display = 'none';
+                        const svgIcon = copyBtn.querySelector('svg');
+                        svgIcon.style.display = 'none';
                         const checkmark = document.createElement('span');
                         checkmark.textContent = '✓';
                         checkmark.style.color = 'var(--text-primary)';
@@ -603,15 +600,15 @@ document.addEventListener('DOMContentLoaded', () => {
                         
                         setTimeout(() => {
                             copyBtn.removeChild(checkmark);
-                            copyIcon.style.display = '';
+                            svgIcon.style.display = '';
                         }, 1500);
                     }).catch(() => {
                         // Fallback method
-                        fallbackCopy(formattedJson, copyBtn, copyIcon);
+                        fallbackCopy(formattedJson, copyBtn, copyBtn.querySelector('svg'));
                     });
                 } catch (e) {
                     // Fallback for older browsers
-                    fallbackCopy(formattedJson, copyBtn, copyIcon);
+                    fallbackCopy(formattedJson, copyBtn, copyBtn.querySelector('svg'));
                 }
             });
         }

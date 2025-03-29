@@ -60,12 +60,16 @@
                 <h2>No logs yet</h2>
                 <p>Start sending logs to this endpoint to see them appear here in real-time.</p>
                 <div class="code-example">
-                    <code>curl -X POST http://{window.location.host}/log \\
--H "Content-Type: application/json" \\
--d '{"level":"info","message":"Hello from _sublog","metadata":{"source":"curl"}}'</code>
+                    <code class="syntax-highlighted">curl -X POST -H <span class="code-string">"Content-Type: application/json"</span> \
+ -d <span class="code-string">'{"level": "info", "message": "User fell in love with _sublog", "meta": {"userId": "user-is-you", "depth": "deeply", "passion_score": 100, "source": "vibes"}}'</span> \
+ http://{window.location.host}/logs</code>
                     <button id="copy-curl" class="icon-button copy-button" title="Copy to clipboard"
                         aria-label="Copy example code to clipboard">
-                        <img src="images/icons/BiChevronBarDown.svg" alt="" class="icon copy-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                            viewBox="0 0 24 24"><!-- Icon from Material Symbols by Google - https://github.com/google/material-design-icons/blob/master/LICENSE -->
+                            <path fill="currentColor"
+                                d="M9 18q-.825 0-1.412-.587T7 16V4q0-.825.588-1.412T9 2h9q.825 0 1.413.588T20 4v12q0 .825-.587 1.413T18 18zm0-2h9V4H9zm-4 6q-.825 0-1.412-.587T3 20V6h2v14h11v2zm4-6V4z" />
+                        </svg>
                     </button>
                 </div>
             </div>

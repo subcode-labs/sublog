@@ -1,4 +1,6 @@
-# _sublog 🪵
+# _sublog
+
+![Sublog Screenshot](screenshot.png)
 
 ## Simple, Self-Hosted, Real-time Log Viewing for Developers
 
